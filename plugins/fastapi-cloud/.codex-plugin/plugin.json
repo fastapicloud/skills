@@ -1,0 +1,38 @@
+{
+  "name": "fastapi-cloud",
+  "version": "0.1.0+codex.20260615122522",
+  "description": "Create, deploy, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
+  "author": {
+    "name": "FastAPI Labs"
+  },
+  "homepage": "https://fastapicloud.com",
+  "keywords": [
+    "fastapi",
+    "fastapi-cloud",
+    "deployment",
+    "python"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "FastAPI Cloud",
+    "shortDescription": "Create, deploy, inspect, and debug FastAPI apps.",
+    "longDescription": "Provides skill for deploying FastAPI apps, debugging failed deploys, inspecting app logs, and managing environment variables",
+    "developerName": "FastAPI Labs",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://fastapicloud.com/",
+    "defaultPrompt": [
+      "Create a new FastAPI app.",
+      "Show recent logs for this FastAPI Cloud app.",
+      "Deploy this FastAPI app to FastAPI Cloud.",
+      "Manage environment variables for this app."
+    ],
+    "brandColor": "#009485",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
+  }
+}

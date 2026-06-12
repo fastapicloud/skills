@@ -1,0 +1,4 @@
+interface:
+  display_name: "FastAPI Cloud Deploy"
+  short_description: "Prepare and deploy a FastAPI app"
+  default_prompt: "Use $fastapi-cloud-deploy to deploy this FastAPI app to FastAPI Cloud."

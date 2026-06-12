@@ -1,0 +1,4 @@
+interface:
+  display_name: "FastAPI Cloud Env"
+  short_description: "Manage app environment variables"
+  default_prompt: "Use $fastapi-cloud-env to manage FastAPI Cloud environment variables."
