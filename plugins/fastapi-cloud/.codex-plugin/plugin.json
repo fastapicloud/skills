@@ -3,9 +3,12 @@
   "version": "0.1.0+codex.20260615122522",
   "description": "Create, deploy, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
   "author": {
-    "name": "FastAPI Labs"
+    "name": "FastAPI Labs",
+    "url": "https://fastapicloud.com/"
   },
   "homepage": "https://fastapicloud.com",
+  "repository": "https://github.com/openai/plugins",
+  "license": "MIT",
   "keywords": [
     "fastapi",
     "fastapi-cloud",
@@ -25,11 +28,12 @@
       "Write"
     ],
     "websiteURL": "https://fastapicloud.com/",
+    "privacyPolicyURL": "https://fastapicloud.com/legal/privacy-policy/",
+    "termsOfServiceURL": "https://fastapicloud.com/legal/terms/",
     "defaultPrompt": [
       "Create a new FastAPI app.",
       "Show recent logs for this FastAPI Cloud app.",
-      "Deploy this FastAPI app to FastAPI Cloud.",
-      "Manage environment variables for this app."
+      "Deploy this FastAPI app to FastAPI Cloud."
     ],
     "brandColor": "#009485",
     "composerIcon": "./assets/logo.png",

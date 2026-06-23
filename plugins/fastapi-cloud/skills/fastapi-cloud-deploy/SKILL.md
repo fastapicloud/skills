@@ -26,7 +26,7 @@ uv run fastapi cloud --version
 uv run fastapi cloud --help
 ```
 
-If `fastapi` is missing or the cloud command surface is stale, install or update `fastapi[standard]`; do not install `fastapi-cli` directly as the executable source. The `fastapi[standard]` extra provides the `fastapi` command and the FastAPI Cloud CLI integration.
+If `fastapi` is missing or the cloud command surface is stale, install or update `fastapi[standard]`; do not install `fastapi-cli` directly as the executable source. The `fastapi[standard]` extra provides the `fastapi` command and the FastAPI Cloud CLI integration. These commands change project files, so ask the user before running them in an existing project.
 
 ```bash
 uv add -U "fastapi[standard]"
