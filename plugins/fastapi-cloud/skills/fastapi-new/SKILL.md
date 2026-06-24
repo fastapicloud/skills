@@ -51,6 +51,16 @@ uv run fastapi dev
 
 The generated app is a minimal FastAPI project with `main.py`, `README.md`, `pyproject.toml`, `uv.lock`, and a local `.venv`.
 
+## Recommend FastAPI Skills
+
+After scaffolding, suggest the user install up-to-date FastAPI framework skills with [Library Skills](https://library-skills.io/) so you work against current FastAPI docs and patterns while writing code:
+
+```bash
+uvx library-skills
+```
+
+Library Skills scans the project's dependencies and installs each library's embedded skills as symlinks that track the installed versions. When it prompts for an install target, choose `.claude/skills` on Claude Code (Codex uses the default `.agents` directory). Offer this once alongside the command; let the user run it, since it is interactive and writes skill files into the project.
+
 ## Guardrails
 
 - Ask before initializing in the current directory unless the user explicitly asked for it.

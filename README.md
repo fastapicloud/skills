@@ -5,6 +5,21 @@ both **Codex** and **Claude Code**. Both share the same skills under
 `plugins/fastapi-cloud/skills/` — only the manifest and marketplace files differ
 per ecosystem.
 
+## FastAPI framework skills (Library Skills)
+
+These skills handle deploying and operating apps on FastAPI Cloud. For help
+*writing* FastAPI code, install the FastAPI framework skills with
+[Library Skills](https://library-skills.io/): it scans your project's
+dependencies and installs each library's embedded, always-up-to-date skills as
+symlinks.
+
+```bash
+uvx library-skills        # Python projects (use `npx library-skills` for JS/TS)
+```
+
+When prompted for an install target, choose `.claude/skills` on Claude Code;
+Codex uses the standard `.agents` directory.
+
 ## Contents
 
 Shared:
