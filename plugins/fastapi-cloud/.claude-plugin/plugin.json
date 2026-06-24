@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "fastapi-cloud",
+  "displayName": "FastAPI Cloud",
+  "description": "Create, deploy, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
+  "author": {
+    "name": "FastAPI Labs",
+    "url": "https://fastapicloud.com/"
+  },
+  "homepage": "https://fastapicloud.com",
+  "repository": "https://github.com/fastapicloud/skills",
+  "license": "MIT",
+  "keywords": ["fastapi", "fastapi-cloud", "deployment", "python"]
+}
