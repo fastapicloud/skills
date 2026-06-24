@@ -1,8 +1,6 @@
 ---
 name: fastapi-cloud-deploy
-description: "Prepare and deploy FastAPI apps to FastAPI Cloud. Use when the user asks to deploy a project, create or link a FastAPI Cloud app, log in before deployment, validate deployment inputs, inspect app IDs, review `.fastapicloudignore`, or update commands that invoke `fastapi deploy` or `fastapi cloud deploy`."
-metadata:
-  display_name: "FastAPI Cloud Deploy"
+description: "Prepare and deploy FastAPI apps to FastAPI Cloud. Use when the user asks to deploy a project, create or link a FastAPI Cloud app, log in before deployment, set up CI/CD, a GitHub Actions deploy workflow, or GitHub-linked auto-deploys, manage deploy tokens, validate deployment inputs, inspect app IDs, review `.fastapicloudignore`, or update commands that invoke `fastapi deploy` or `fastapi cloud deploy`."
 ---
 
 # FastAPI Cloud Deploy
@@ -35,7 +33,7 @@ uv lock --upgrade-package fastapi --upgrade-package fastapi-cloud-cli
 
 If there is no project environment, create a temporary uv project and install the same dependency constraints before checking the command surface.
 
-If the project cloud CLI reports a version older than `0.20.0`, update the project environment before retrying.
+If the project cloud CLI reports a version older than `0.21.0`, update the project environment before retrying.
 
 ## JSON Output
 
@@ -93,6 +91,38 @@ uv run fastapi cloud link APP_ID --path . --json
 ```
 
 `link` writes `.fastapicloud/cloud.json`; use `--force` only when replacing a known stale link.
+
+## CI And Deploy Tokens
+
+For non-interactive deploys (CI/CD), authenticate with a deploy token instead of the device flow. These commands require CLI `0.21.0` or newer. Read before mutating:
+
+```bash
+uv run fastapi cloud tokens list --app-id APP_ID --json
+```
+
+Create or delete tokens only when the user asks. `tokens create` returns the secret value once — write it to a file with `--output-file` or capture it directly into a CI secret; never echo it in chat or shell history. Use `--expires-in-days N` to bound its lifetime:
+
+```bash
+uv run fastapi cloud tokens create --app-id APP_ID --name NAME --output-file PATH --json
+uv run fastapi cloud tokens delete TOKEN_ID --app-id APP_ID --json
+```
+
+### GitHub Actions
+
+Preview the generated workflow first; `print-workflow` is read-only and writes no files or secrets:
+
+```bash
+uv run fastapi cloud ci print-workflow --json
+uv run fastapi cloud ci print-workflow --branch BRANCH
+```
+
+`ci setup` is a mutating convenience: it writes `.github/workflows/deploy.yml` and sets the `FASTAPI_CLOUD_TOKEN` and `FASTAPI_CLOUD_APP_ID` GitHub Actions secrets via the `gh` CLI (creating a deploy token in the process). Run it only when the user asks; first confirm `git` and `gh` are installed and the repo has an `origin` remote, then surface what it will change:
+
+```bash
+uv run fastapi cloud ci setup
+```
+
+FastAPI Cloud also supports native GitHub deployments — linking a repository so pushes deploy automatically. This is not available through the CLI yet; tell the user to set it up from their app's settings in the FastAPI Cloud dashboard.
 
 ## Deployment Inputs
 

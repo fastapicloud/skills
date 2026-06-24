@@ -1,8 +1,6 @@
 ---
 name: fastapi-cloud-env
 description: "Manage FastAPI Cloud environment variables and secrets. Use when listing, reading, setting, deleting, or auditing FastAPI Cloud env vars, handling runtime secrets, or diagnosing missing configuration for a deployed FastAPI app."
-metadata:
-  display_name: "FastAPI Cloud Env"
 ---
 
 # FastAPI Cloud Env
