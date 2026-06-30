@@ -1,4 +1,0 @@
-interface:
-  display_name: "FastAPI New"
-  short_description: "Create new uv-backed FastAPI apps"
-  default_prompt: "Use $fastapi-new to create a new uv-backed FastAPI app."

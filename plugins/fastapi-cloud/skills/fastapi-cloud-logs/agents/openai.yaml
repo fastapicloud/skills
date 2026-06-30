@@ -1,4 +1,0 @@
-interface:
-  display_name: "FastAPI Cloud Logs"
-  short_description: "Inspect FastAPI Cloud app logs"
-  default_prompt: "Use $fastapi-cloud-logs to show recent logs for this FastAPI Cloud app."
