@@ -11,7 +11,7 @@
       "displayName": "FastAPI Cloud",
       "description": "Create, deploy, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
       "category": "Developer Tools",
-      "keywords": ["fastapi", "fastapi-cloud", "deployment", "python"]
+      "keywords": ["fastapi", "fastapicloud", "fastapi-cloud", "deployment", "python"]
     }
   ]
 }
