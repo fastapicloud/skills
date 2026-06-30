@@ -1,5 +1,5 @@
 ---
-name: fastapi-cloud-logs
+name: fastapicloud-logs
 description: "Inspect FastAPI Cloud logs. Use when the user asks for recent logs, the latest or last log timestamp, runtime log lines, build logs for a deployment, whether an app has emitted logs, or a quick app log/health check."
 ---
 

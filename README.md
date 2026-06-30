@@ -35,8 +35,8 @@ When prompted for an install target, choose `.claude/skills`.
 ```
 
 The plugin's skills are namespaced by the plugin name, e.g.
-`/fastapicloud:fastapi-cloud-deploy`, `/fastapicloud:fastapi-new`,
-`/fastapicloud:fastapi-cloud-logs`, `/fastapicloud:fastapi-cloud-env`. Claude
+`/fastapicloud:fastapicloud-deploy`, `/fastapicloud:fastapi-new`,
+`/fastapicloud:fastapicloud-logs`, `/fastapicloud:fastapicloud-env`. Claude
 also invokes them automatically based on task context.
 
 > `.claude-plugin/plugin.json` omits `version`, so each git commit is treated as

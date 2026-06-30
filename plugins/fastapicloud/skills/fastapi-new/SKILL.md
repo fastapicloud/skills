@@ -68,4 +68,4 @@ Library Skills scans the project's dependencies and installs each library's embe
 - Use a filesystem-safe project name: lowercase, hyphenated, no spaces.
 - Prefer a new subdirectory when the user asks for multiple apps or asks for something experimental.
 - If `uv` is missing, tell the user to install uv from `https://docs.astral.sh/uv/getting-started/installation/`.
-- To deploy the generated app, switch to `fastapi-cloud-deploy` after creation.
+- To deploy the generated app, switch to `fastapicloud-deploy` after creation.

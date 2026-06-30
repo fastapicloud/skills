@@ -1,5 +1,5 @@
 ---
-name: fastapi-cloud-deploy
+name: fastapicloud-deploy
 description: "Prepare and deploy FastAPI apps to FastAPI Cloud. Use when the user asks to deploy a project, create or link a FastAPI Cloud app, log in before deployment, set up CI/CD, a GitHub Actions deploy workflow, or GitHub-linked auto-deploys, manage deploy tokens, validate deployment inputs, inspect app IDs, review `.fastapicloudignore`, or update commands that invoke `fastapi deploy` or `fastapi cloud deploy`."
 ---
 
