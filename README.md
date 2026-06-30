@@ -23,20 +23,20 @@ When prompted for an install target, choose `.claude/skills`.
 ## Contents
 
 - `.claude-plugin/marketplace.json` exposes this repository as a marketplace.
-- `plugins/fastapi-cloud/.claude-plugin/plugin.json` is the plugin manifest.
-- `plugins/fastapi-cloud/skills/` contains the FastAPI Cloud skills for app
+- `plugins/fastapicloud/.claude-plugin/plugin.json` is the plugin manifest.
+- `plugins/fastapicloud/skills/` contains the FastAPI Cloud skills for app
   creation, deployment, logs, and environment variables.
 
 ## Install
 
 ```bash
 /plugin marketplace add fastapicloud/skills
-/plugin install fastapi-cloud@fastapicloud-skills
+/plugin install fastapicloud@fastapicloud-skills
 ```
 
 The plugin's skills are namespaced by the plugin name, e.g.
-`/fastapi-cloud:fastapi-cloud-deploy`, `/fastapi-cloud:fastapi-new`,
-`/fastapi-cloud:fastapi-cloud-logs`, `/fastapi-cloud:fastapi-cloud-env`. Claude
+`/fastapicloud:fastapi-cloud-deploy`, `/fastapicloud:fastapi-new`,
+`/fastapicloud:fastapi-cloud-logs`, `/fastapicloud:fastapi-cloud-env`. Claude
 also invokes them automatically based on task context.
 
 > `.claude-plugin/plugin.json` omits `version`, so each git commit is treated as
@@ -46,7 +46,7 @@ also invokes them automatically based on task context.
 ## Development
 
 ```bash
-claude plugin validate ./plugins/fastapi-cloud
+claude plugin validate ./plugins/fastapicloud
 ```
 
 The plugin is published under the MIT license.

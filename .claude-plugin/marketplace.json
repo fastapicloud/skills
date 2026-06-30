@@ -6,8 +6,8 @@
   "description": "FastAPI Labs plugins for Claude Code.",
   "plugins": [
     {
-      "name": "fastapi-cloud",
-      "source": "./plugins/fastapi-cloud",
+      "name": "fastapicloud",
+      "source": "./plugins/fastapicloud",
       "displayName": "FastAPI Cloud",
       "description": "Create, deploy, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
       "category": "Developer Tools",
