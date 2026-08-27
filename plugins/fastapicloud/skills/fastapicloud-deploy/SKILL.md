@@ -1,6 +1,6 @@
 ---
 name: fastapicloud-deploy
-description: "Prepare and deploy FastAPI apps to FastAPI Cloud. Use when the user asks to deploy a project, create or link a FastAPI Cloud app, log in before deployment, set up CI/CD, a GitHub Actions deploy workflow, or GitHub-linked auto-deploys, manage deploy tokens, validate deployment inputs, inspect app IDs, review `.fastapicloudignore`, or update commands that invoke `fastapi deploy` or `fastapi cloud deploy`."
+description: "Prepare and deploy FastAPI apps to FastAPI Cloud. Use when the user asks to deploy a project, create, link, or update a FastAPI Cloud app, log in before deployment, set up CI/CD, a GitHub Actions deploy workflow, or GitHub-linked auto-deploys, manage deploy tokens, validate deployment inputs, inspect app IDs, review `.fastapicloudignore`, or update commands that invoke `fastapi deploy` or `fastapi cloud deploy`."
 ---
 
 # FastAPI Cloud Deploy
@@ -37,7 +37,7 @@ If the project cloud CLI reports a version older than `0.21.0`, update the proje
 
 ## JSON Output
 
-Use `--json` whenever the command supports it. If command output includes terminal control sequences before the JSON payload, strip ANSI/OSC control sequences before parsing.
+Use `--json` whenever the command supports it. Parse stdout directly as the CLI's structured JSON envelope; treat other stdout as an incompatible or stale command surface.
 
 ## Workflow
 
@@ -79,18 +79,27 @@ uv run fastapi cloud deploy . --json
 
 Use `--app-id APP_ID` or `FASTAPI_CLOUD_APP_ID` for a specific target. `--json` deploy output implies non-waiting behavior; for non-JSON deploy commands, use `--no-wait` only when the user wants the command to return before the deployment reaches a terminal state.
 
-## App Creation And Linking
+## App Creation, Linking, And Updates
 
 Use read commands before write commands:
 
 ```bash
 uv run fastapi cloud teams list --json
 uv run fastapi cloud apps list --team-id TEAM_ID --json
-uv run fastapi cloud apps create --team-id TEAM_ID --name APP_NAME --directory . --link --path . --json
+uv run fastapi cloud apps create --team-id TEAM_ID --name APP_NAME --link --path . --json
 uv run fastapi cloud link APP_ID --path . --json
 ```
 
-`link` writes `.fastapicloud/cloud.json`; use `--force` only when replacing a known stale link.
+For a monorepo app, pass `--directory DIRECTORY` to `apps create`. This is the app's relative directory containing `pyproject.toml`; `--path` is the local directory where linking writes configuration.
+
+Read the app before changing its configured directory. `apps update` requires CLI `0.22.0` or newer:
+
+```bash
+uv run fastapi cloud apps get APP_ID --json
+uv run fastapi cloud apps update APP_ID --directory DIRECTORY --json
+```
+
+Only update app metadata when the user asks. `link` writes `.fastapicloud/cloud.json`; use `--force` only when replacing a known stale link.
 
 ## CI And Deploy Tokens
 

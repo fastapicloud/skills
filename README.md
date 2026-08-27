@@ -1,7 +1,8 @@
 # FastAPI Cloud (Claude Code plugin)
 
 Claude Code plugin for working with FastAPI Cloud from local FastAPI projects:
-create apps, deploy, inspect logs, and manage environment variables.
+create apps, deploy, connect third-party resources, inspect logs, and manage
+environment variables.
 
 The Codex version of this plugin lives in a separate repository
 (`fastapicloud/codex-plugins`); the two share the same `SKILL.md` instructions.
@@ -25,7 +26,7 @@ When prompted for an install target, choose `.claude/skills`.
 - `.claude-plugin/marketplace.json` exposes this repository as a marketplace.
 - `plugins/fastapicloud/.claude-plugin/plugin.json` is the plugin manifest.
 - `plugins/fastapicloud/skills/` contains the FastAPI Cloud skills for app
-  creation, deployment, logs, and environment variables.
+  creation, deployment, integrations, logs, and environment variables.
 
 ## Install
 
@@ -36,8 +37,9 @@ When prompted for an install target, choose `.claude/skills`.
 
 The plugin's skills are namespaced by the plugin name, e.g.
 `/fastapicloud:fastapicloud-deploy`, `/fastapicloud:fastapi-new`,
-`/fastapicloud:fastapicloud-logs`, `/fastapicloud:fastapicloud-env`. Claude
-also invokes them automatically based on task context.
+`/fastapicloud:fastapicloud-integrations`, `/fastapicloud:fastapicloud-logs`,
+and `/fastapicloud:fastapicloud-env`. Claude also invokes them automatically
+based on task context.
 
 > `.claude-plugin/plugin.json` omits `version`, so each git commit is treated as
 > a new version and users receive updates on every push. To pin releases, add a
