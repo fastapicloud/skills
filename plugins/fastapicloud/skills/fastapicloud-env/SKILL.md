@@ -37,6 +37,16 @@ If the project cloud CLI reports a version older than `0.20.0`, update the proje
 
 Use `--json` whenever the command supports it.
 
+## Integrations First For Managed Services
+
+If the user asks to connect a database, cache, observability platform, or another managed service—not to set a specific named variable—check FastAPI Cloud integrations first. A supported integration should manage its app configuration instead of requiring the user to copy provider credentials manually:
+
+```bash
+uv run fastapi cloud integrations providers list --json
+```
+
+Use the `fastapicloud-integrations` workflow when a matching provider is available. Fall back to manual environment variables only when no integration supports the service or the user explicitly prefers manual configuration.
+
 ## Read First
 
 ```bash
