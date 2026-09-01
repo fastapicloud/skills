@@ -41,13 +41,23 @@ The plugin's skills are namespaced by the plugin name, e.g.
 and `/fastapicloud:fastapicloud-env`. Claude also invokes them automatically
 based on task context.
 
-> `.claude-plugin/plugin.json` omits `version`, so each git commit is treated as
-> a new version and users receive updates on every push. To pin releases, add a
-> `version` field and bump it per release.
+Plugin versions are pinned and updated together with the release notes.
+
+## Release preparation
+
+`src/plugins/version.json`, the directly installable plugin manifests, and
+`release-notes.md` are updated together by `scripts/prepare_release.py`.
+
+```bash
+uv run scripts/prepare_release.py --help
+```
 
 ## Development
 
 ```bash
+uvx ruff check .
+uv run --no-project --with "pytest>=8,<10" --with "typer>=0.26.1" \
+  python -m pytest --strict-config --strict-markers
 claude plugin validate ./plugins/fastapicloud
 ```
 
