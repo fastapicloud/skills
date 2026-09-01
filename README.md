@@ -51,12 +51,8 @@ grok plugin install fastapicloud/skills --trust
 
 ### Codex and ChatGPT
 
-Release archives use the direct plugin root expected by OpenAI. Build an upload
-archive with:
-
-```bash
-python scripts/package_release.py dist/releases
-```
+Releases attach `fastapicloud-openai-<version>.zip`, which has the direct plugin
+root expected by OpenAI. Upload that archive to the OpenAI plugin platform.
 
 ## FastAPI framework skills
 
@@ -88,13 +84,15 @@ python scripts/package_release.py dist/releases
 Build commands refuse to write into non-empty output directories. Release ZIPs
 are deterministic and accompanied by `SHA256SUMS`.
 
-## Release preparation
+## Releases
 
-`src/plugins/version.json`, the directly installable plugin manifests, and
-`release-notes.md` are updated together by `scripts/prepare_release.py`.
+The release flow mirrors `fastapilabs/fastapi-cloud-cli`. The Latest Changes
+GitHub App records merged pull request titles in `release-notes.md`; do not edit
+`## Latest Changes` manually.
 
-```bash
-uv run scripts/prepare_release.py --help
-```
+1. Run the **Prepare Release** workflow and choose patch, minor, or major.
+2. Merge the generated release pull request.
+3. Review and publish the draft GitHub release.
+4. Publishing attaches the OpenAI ZIP and its checksum to the release.
 
 The skills and plugin metadata are published under the MIT license.
