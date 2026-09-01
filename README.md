@@ -1,47 +1,62 @@
-# FastAPI Cloud (Claude Code plugin)
+# FastAPI Cloud agent skills
 
-Claude Code plugin for working with FastAPI Cloud from local FastAPI projects:
-create apps, deploy, connect third-party resources, inspect logs, and manage
-environment variables.
+One repository for FastAPI Cloud skills across Claude Code, Grok Build, and Amp.
+The same top-level skill directories are the source of truth for every client;
+provider manifests are small adapters around those shared instructions.
 
-The Codex version of this plugin lives in a separate repository
-(`fastapicloud/codex-plugins`); the two share the same `SKILL.md` instructions.
+## Repository layout
 
-## FastAPI framework skills (Library Skills)
-
-These skills handle deploying and operating apps on FastAPI Cloud. For help
-*writing* FastAPI code, install the FastAPI framework skills with
-[Library Skills](https://library-skills.io/): it scans your project's
-dependencies and installs each library's embedded, always-up-to-date skills as
-symlinks.
-
-```bash
-uvx library-skills        # Python projects (use `npx library-skills` for JS/TS)
+```text
+fastapi-new/SKILL.md
+fastapicloud-deploy/SKILL.md
+fastapicloud-env/SKILL.md
+fastapicloud-integrations/SKILL.md
+fastapicloud-logs/SKILL.md
+.claude-plugin/                 # Direct Claude Code plugin and marketplace
+.grok-plugin/                   # Direct Grok Build plugin
 ```
 
-When prompted for an install target, choose `.claude/skills`.
-
-## Contents
-
-- `.claude-plugin/marketplace.json` exposes this repository as a marketplace.
-- `plugins/fastapicloud/.claude-plugin/plugin.json` is the plugin manifest.
-- `plugins/fastapicloud/skills/` contains the FastAPI Cloud skills for app
-  creation, deployment, integrations, logs, and environment variables.
+Each skill is an immediate child of the repository root so Amp can install the
+repository without a subpath. Claude and Grok use explicit paths in their
+manifests to load those same directories.
 
 ## Install
+
+### Amp
+
+```bash
+amp skill add fastapicloud/skills
+```
+
+### Claude Code
 
 ```bash
 /plugin marketplace add fastapicloud/skills
 /plugin install fastapicloud@fastapicloud-skills
+/reload-plugins
 ```
 
-The plugin's skills are namespaced by the plugin name, e.g.
-`/fastapicloud:fastapicloud-deploy`, `/fastapicloud:fastapi-new`,
-`/fastapicloud:fastapicloud-integrations`, `/fastapicloud:fastapicloud-logs`,
-and `/fastapicloud:fastapicloud-env`. Claude also invokes them automatically
-based on task context.
+The skills are namespaced by the plugin name, for example
+`/fastapicloud:fastapicloud-deploy`. Claude also invokes them automatically
+when relevant.
 
-Plugin versions are pinned and updated together with the release notes.
+### Grok Build
+
+```bash
+grok plugin install fastapicloud/skills --trust
+```
+
+## FastAPI framework skills
+
+After creating a project, install the framework and dependency-specific skills
+provided by the installed packages:
+
+```bash
+uvx library-skills        # Python projects
+npx library-skills        # JavaScript and TypeScript projects
+```
+
+When prompted, choose the skill directory for the active coding agent.
 
 ## Release preparation
 
@@ -58,7 +73,8 @@ uv run scripts/prepare_release.py --help
 uvx ruff check .
 uv run --no-project --with "pytest>=8,<10" --with "typer>=0.26.1" \
   python -m pytest --strict-config --strict-markers
-claude plugin validate ./plugins/fastapicloud
+claude plugin validate .
+npx --yes @xai-official/grok plugin validate .
 ```
 
-The plugin is published under the MIT license.
+The skills and plugin metadata are published under the MIT license.
