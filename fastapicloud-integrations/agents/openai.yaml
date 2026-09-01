@@ -1,0 +1,4 @@
+interface:
+  display_name: "FastAPI Cloud Integrations"
+  short_description: "Connect databases and managed services"
+  default_prompt: "Use $fastapicloud-integrations to connect a database or managed service to this FastAPI Cloud app."

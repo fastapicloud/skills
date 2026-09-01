@@ -1,0 +1,62 @@
+name: Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.14"
+      - name: Install uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: latest-known
+      - name: Lint
+        run: uvx ruff check .
+      - name: Test
+        run: |
+          uv run --no-project \
+            --with "pytest>=8,<10" \
+            --with "typer>=0.26.1" \
+            python -m pytest --strict-config --strict-markers
+      - name: Build and validate shared contracts
+        run: |
+          set -euo pipefail
+          python scripts/validate.py --source
+          python scripts/build.py codex dist/codex
+          python scripts/validate.py codex dist/codex
+      - name: Validate Claude schemas
+        run: |
+          uvx check-jsonschema \
+            --schemafile https://json.schemastore.org/claude-code-plugin-manifest.json \
+            .claude-plugin/plugin.json
+          uvx check-jsonschema \
+            --schemafile https://json.schemastore.org/claude-code-marketplace.json \
+            .claude-plugin/marketplace.json
+      - name: Validate Codex plugin
+        env:
+          CODEX_VALIDATOR_SHA: cdc1d592df7f066c141025cc8ae80bb3202580b6
+        run: |
+          set -euo pipefail
+          base="https://raw.githubusercontent.com/openai/codex/${CODEX_VALIDATOR_SHA}/codex-rs/skills/src/assets/samples/plugin-creator/scripts"
+          curl --fail --silent --show-error --location "$base/validate_plugin.py" --output /tmp/validate_plugin.py
+          uv run --with pyyaml python /tmp/validate_plugin.py dist/codex
+      - name: Validate Grok plugin
+        run: npx --yes @xai-official/grok plugin validate .
+      - name: Build release archives
+        run: python scripts/package_release.py dist/releases
