@@ -79,13 +79,14 @@ The tooling is Python-based and uses uv for isolated dependencies.
 
 ```bash
 uvx ruff check .
-uv run --no-project --with "pytest>=8,<10" --with "typer>=0.26.1" \
+uv run --no-project --with "pytest>=8,<10" --with "pyyaml>=6,<7" \
+  --with "typer>=0.26.1" \
   python -m pytest --strict-config --strict-markers
-python scripts/validate.py --source
+uv run scripts/validate.py --source
 
 python scripts/build.py codex dist/codex
-python scripts/validate.py codex dist/codex
-python scripts/package_release.py dist/releases
+uv run scripts/validate.py codex dist/codex
+uv run scripts/package_release.py dist/releases
 ```
 
 Build commands refuse to write into non-empty output directories. Release ZIPs
@@ -101,5 +102,25 @@ GitHub App records merged pull request titles in `release-notes.md`; do not edit
 2. Merge the generated release pull request.
 3. Review and publish the draft GitHub release.
 4. Publishing attaches the OpenAI ZIP and its checksum to the release.
+
+### Publish marketplace updates
+
+Publishing the GitHub release does not update external marketplaces. After the
+release is public:
+
+1. Confirm `fastapicloud-openai-<version>.zip` and `SHA256SUMS` are attached to
+   the GitHub release.
+2. For Cursor and Grok Bot, submit a new listing or update the existing listing
+   at the [Cursor Marketplace publisher](https://cursor.com/marketplace/publish).
+   Marketplace updates are reviewed before they become available.
+3. For Codex and ChatGPT, create or update the plugin at the
+   [OpenAI plugin platform](https://platform.openai.com/plugins) and upload the
+   release ZIP.
+4. To publish in Grok Build's official catalog, update the plugin's pinned
+   commit in [xAI's plugin marketplace](https://github.com/xai-org/plugin-marketplace),
+   regenerate and validate its index as directed by that repository, and open a
+   pull request.
+5. Smoke-test the Amp, Claude Code, and Grok Build install commands above from
+   the released `main` branch.
 
 The skills and plugin metadata are published under the MIT license.
