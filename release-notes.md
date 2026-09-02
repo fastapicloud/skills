@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Features
+
+* ✨ Unify skills for Amp, Claude, and Grok. PR [#5](https://github.com/fastapicloud/skills/pull/5) by [@patrick91](https://github.com/patrick91).
+
 ### Internal
 
 * 🔖 Add release preparation tooling. PR [#4](https://github.com/fastapicloud/skills/pull/4) by [@patrick91](https://github.com/patrick91).
