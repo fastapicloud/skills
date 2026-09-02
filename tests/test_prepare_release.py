@@ -50,8 +50,11 @@ def test_update_version_file_requires_newer_version() -> None:
 
 
 def test_parse_manifest_files() -> None:
-    assert parse_manifest_files(".claude-plugin/plugin.json,.grok-plugin/plugin.json") == [
+    assert parse_manifest_files(
+        ".claude-plugin/plugin.json,.cursor-plugin/plugin.json,.grok-plugin/plugin.json"
+    ) == [
         Path(".claude-plugin/plugin.json"),
+        Path(".cursor-plugin/plugin.json"),
         Path(".grok-plugin/plugin.json"),
     ]
 
@@ -209,9 +212,10 @@ def test_get_release_notes_body_requires_non_empty_section() -> None:
 def test_cli_updates_configured_files(tmp_path: Path) -> None:
     version_file = tmp_path / "version.json"
     claude_manifest = tmp_path / "claude.json"
+    cursor_manifest = tmp_path / "cursor.json"
     grok_manifest = tmp_path / "grok.json"
     release_notes_file = tmp_path / "release-notes.md"
-    for path in (version_file, claude_manifest, grok_manifest):
+    for path in (version_file, claude_manifest, cursor_manifest, grok_manifest):
         path.write_text(version_content("0.18.0"))
     release_notes_file.write_text(
         """# Release Notes
@@ -232,7 +236,7 @@ def test_cli_updates_configured_files(tmp_path: Path) -> None:
             "--version-file",
             str(version_file),
             "--plugin-manifest-files",
-            f"{claude_manifest},{grok_manifest}",
+            f"{claude_manifest},{cursor_manifest},{grok_manifest}",
             "--release-notes-file",
             str(release_notes_file),
             "--date",
@@ -242,7 +246,7 @@ def test_cli_updates_configured_files(tmp_path: Path) -> None:
 
     assert result.exit_code == 0, result.output
     assert "Prepared release 0.18.1 (2026-05-30)" in result.output
-    for path in (version_file, claude_manifest, grok_manifest):
+    for path in (version_file, claude_manifest, cursor_manifest, grok_manifest):
         assert get_current_version(path.read_text(), path) == "0.18.1"
     assert "## 0.18.1 (2026-05-30)" in release_notes_file.read_text()
 
@@ -285,9 +289,10 @@ def test_cli_accepts_env_vars(
 ) -> None:
     version_file = tmp_path / "version.json"
     claude_manifest = tmp_path / "claude.json"
+    cursor_manifest = tmp_path / "cursor.json"
     grok_manifest = tmp_path / "grok.json"
     release_notes_file = tmp_path / "release-notes.md"
-    for path in (version_file, claude_manifest, grok_manifest):
+    for path in (version_file, claude_manifest, cursor_manifest, grok_manifest):
         path.write_text(version_content("0.18.0"))
     release_notes_file.write_text(
         "# Release Notes\n\n## Latest Changes\n\n* Fix something.\n"
@@ -296,7 +301,7 @@ def test_cli_accepts_env_vars(
     monkeypatch.setenv("PREPARE_RELEASE_VERSION_FILE", str(version_file))
     monkeypatch.setenv(
         "PREPARE_RELEASE_PLUGIN_MANIFEST_FILES",
-        f"{claude_manifest},{grok_manifest}",
+        f"{claude_manifest},{cursor_manifest},{grok_manifest}",
     )
     monkeypatch.setenv(
         "PREPARE_RELEASE_RELEASE_NOTES_FILE", str(release_notes_file)
@@ -307,7 +312,7 @@ def test_cli_accepts_env_vars(
 
     assert result.exit_code == 0, result.output
     assert "Prepared release 0.19.0 (2026-05-30)" in result.output
-    for path in (version_file, claude_manifest, grok_manifest):
+    for path in (version_file, claude_manifest, cursor_manifest, grok_manifest):
         assert get_current_version(path.read_text(), path) == "0.19.0"
     assert "## 0.19.0 (2026-05-30)" in release_notes_file.read_text()
 

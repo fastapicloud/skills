@@ -1,9 +1,9 @@
 # FastAPI Cloud agent skills
 
-One repository for FastAPI Cloud skills across Claude Code, Codex, Grok Build,
-and Amp. The same top-level skill directories are the source of truth for every
-client; provider manifests are small adapters and are never maintained in
-separate generated repositories.
+One repository for FastAPI Cloud skills across Cursor and Grok Bot, Claude
+Code, Codex and ChatGPT, Grok Build, and Amp. The same top-level skill
+directories are the source of truth for every client; provider manifests are
+small adapters and are never maintained in separate generated repositories.
 
 ## Repository layout
 
@@ -14,14 +14,15 @@ fastapicloud-env/SKILL.md
 fastapicloud-integrations/SKILL.md
 fastapicloud-logs/SKILL.md
 .claude-plugin/                 # Direct Claude Code plugin and marketplace
+.cursor-plugin/                 # Cursor and Grok Bot marketplace plugin
 .grok-plugin/                   # Direct Grok Build plugin
 src/plugins/codex/              # Codex archive metadata
 ```
 
 Each skill is an immediate child of the repository root so Amp can install the
-repository without a subpath. Claude and Grok use explicit paths in their
-manifests to load those same directories. The release builder copies them into
-Codex's required `skills/` directory without changing their contents.
+repository without a subpath. Claude, Cursor, and Grok Build use explicit paths
+in their manifests to load those same directories. The release builder copies
+them into Codex's required `skills/` directory without changing their contents.
 
 ## Install
 
@@ -42,6 +43,12 @@ amp skill add fastapicloud/skills
 The skills are namespaced by the plugin name, for example
 `/fastapicloud:fastapicloud-deploy`. Claude also invokes them automatically
 when relevant.
+
+### Cursor and Grok Bot
+
+Install **FastAPI Cloud** from the
+[Cursor Marketplace](https://cursor.com/marketplace). Cursor and Grok Bot use
+the same marketplace plugin.
 
 ### Grok Build
 

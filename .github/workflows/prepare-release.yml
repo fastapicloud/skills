@@ -27,7 +27,7 @@ jobs:
       id-token: write
     env:
       PREPARE_RELEASE_VERSION_FILE: src/plugins/version.json
-      PREPARE_RELEASE_PLUGIN_MANIFEST_FILES: .claude-plugin/plugin.json,.grok-plugin/plugin.json
+      PREPARE_RELEASE_PLUGIN_MANIFEST_FILES: .claude-plugin/plugin.json,.cursor-plugin/plugin.json,.grok-plugin/plugin.json
       PREPARE_RELEASE_RELEASE_NOTES_FILE: release-notes.md
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -69,6 +69,7 @@ jobs:
           git add \
             "$PREPARE_RELEASE_VERSION_FILE" \
             .claude-plugin/plugin.json \
+            .cursor-plugin/plugin.json \
             .grok-plugin/plugin.json \
             "$PREPARE_RELEASE_RELEASE_NOTES_FILE"
           git commit -m "🔖 Release version ${VERSION}"

@@ -15,6 +15,7 @@ SEMVER = re.compile(r"^\d+\.\d+\.\d+$")
 EXPECTED_SKILLS = set(SKILL_NAMES)
 DIRECT_MANIFESTS = (
     Path(".claude-plugin/plugin.json"),
+    Path(".cursor-plugin/plugin.json"),
     Path(".grok-plugin/plugin.json"),
 )
 EXPECTED_SKILL_PATHS = [f"./{name}/" for name in SKILL_NAMES]
@@ -127,6 +128,14 @@ def validate_source(root: Path = ROOT) -> None:
     validate_top_level_skills(root)
     for manifest in DIRECT_MANIFESTS:
         validate_direct_manifest(root, manifest, version)
+
+    cursor_manifest_path = root / ".cursor-plugin" / "plugin.json"
+    cursor_manifest = load_json(cursor_manifest_path)
+    cursor_logo = cursor_manifest.get("logo")
+    require(
+        isinstance(cursor_logo, str) and (root / cursor_logo).is_file(),
+        f"Missing Cursor logo referenced by {cursor_manifest_path}",
+    )
 
     marketplace_path = root / ".claude-plugin" / "marketplace.json"
     marketplace = load_json(marketplace_path)
