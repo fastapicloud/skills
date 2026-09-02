@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "fastapicloud",
-      "source": "./plugins/fastapicloud",
+      "source": "./",
       "displayName": "FastAPI Cloud",
       "description": "Create, deploy, connect services, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
       "category": "Developer Tools",

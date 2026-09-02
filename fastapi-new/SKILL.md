@@ -59,7 +59,7 @@ After scaffolding, suggest the user install up-to-date FastAPI framework skills 
 uvx library-skills
 ```
 
-Library Skills scans the project's dependencies and installs each library's embedded skills as symlinks that track the installed versions. When it prompts for an install target, choose `.claude/skills` on Claude Code (Codex uses the default `.agents` directory). Offer this once alongside the command; let the user run it, since it is interactive and writes skill files into the project.
+Library Skills scans the project's dependencies and installs each library's embedded skills as symlinks that track the installed versions. When it prompts for an install target, choose the directory for the active coding agent. Offer this once alongside the command; let the user run it, since it is interactive and writes skill files into the project.
 
 ## Guardrails
 
