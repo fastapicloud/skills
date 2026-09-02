@@ -3,7 +3,7 @@
   "name": "fastapicloud",
   "version": "0.2.2",
   "displayName": "FastAPI Cloud",
-  "description": "Create, deploy, connect services, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
+  "description": "Create, deploy, configure custom domains, connect services, inspect logs, and debug FastAPI apps on FastAPI Cloud.",
   "author": {
     "name": "FastAPI Labs",
     "url": "https://fastapicloud.com/"
@@ -16,12 +16,14 @@
     "fastapicloud",
     "fastapi-cloud",
     "deployment",
+    "custom-domains",
     "integrations",
     "python"
   ],
   "skills": [
     "./fastapi-new/",
     "./fastapicloud-deploy/",
+    "./fastapicloud-domains/",
     "./fastapicloud-env/",
     "./fastapicloud-integrations/",
     "./fastapicloud-logs/"
