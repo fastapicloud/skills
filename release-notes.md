@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.2.2 (2026-09-02)
+
 ### Features
 
 * ✨ Add Codex packaging and CI validation. PR [#6](https://github.com/fastapicloud/skills/pull/6) by [@patrick91](https://github.com/patrick91).

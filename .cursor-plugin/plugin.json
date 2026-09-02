@@ -1,7 +1,7 @@
 {
   "name": "fastapicloud",
   "displayName": "FastAPI Cloud",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Create, deploy, connect services, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
   "author": {
     "name": "FastAPI Labs"
