@@ -1,0 +1,5 @@
+target-version = "py314"
+
+[lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501", "B008"]

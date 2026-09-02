@@ -1,0 +1,17 @@
+auto-labels:
+  docs:
+    - README.md
+    - "**/SKILL.md"
+  feature:
+    - .claude-plugin/**
+    - .grok-plugin/**
+    - plugins/**
+    - "*/agents/openai.yaml"
+    - src/plugins/**
+  internal:
+    - .github/**
+    - scripts/**
+    - tests/**
+    - .gitignore
+    - release-notes.md
+    - ruff.toml
