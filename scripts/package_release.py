@@ -1,3 +1,8 @@
+# /// script
+# requires-python = ">=3.14"
+# dependencies = ["pyyaml>=6,<7"]
+# ///
+
 """Build the deterministic OpenAI plugin release archive."""
 
 import argparse

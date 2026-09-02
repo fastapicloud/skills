@@ -1,0 +1,29 @@
+{
+  "name": "fastapicloud",
+  "displayName": "FastAPI Cloud",
+  "version": "0.2.1",
+  "description": "Create, deploy, connect services, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
+  "author": {
+    "name": "FastAPI Labs"
+  },
+  "homepage": "https://fastapicloud.com/",
+  "repository": "https://github.com/fastapicloud/skills",
+  "license": "MIT",
+  "logo": "src/plugins/codex/assets/logo.png",
+  "keywords": [
+    "fastapi",
+    "fastapicloud",
+    "fastapi-cloud",
+    "deployment",
+    "integrations",
+    "python"
+  ],
+  "category": "Developer Tools",
+  "skills": [
+    "./fastapi-new/",
+    "./fastapicloud-deploy/",
+    "./fastapicloud-env/",
+    "./fastapicloud-integrations/",
+    "./fastapicloud-logs/"
+  ]
+}
