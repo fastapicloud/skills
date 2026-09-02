@@ -9,6 +9,7 @@
 
 ### Internal
 
+* 🚀 Automate plugin releases. PR [#3](https://github.com/fastapicloud/skills/pull/3) by [@patrick91](https://github.com/patrick91).
 * 🔖 Add release preparation tooling. PR [#4](https://github.com/fastapicloud/skills/pull/4) by [@patrick91](https://github.com/patrick91).
 
 ## 0.2.1
