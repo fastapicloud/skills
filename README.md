@@ -10,6 +10,7 @@ small adapters and are never maintained in separate generated repositories.
 ```text
 fastapi-new/SKILL.md
 fastapicloud-deploy/SKILL.md
+fastapicloud-domains/SKILL.md
 fastapicloud-env/SKILL.md
 fastapicloud-integrations/SKILL.md
 fastapicloud-logs/SKILL.md

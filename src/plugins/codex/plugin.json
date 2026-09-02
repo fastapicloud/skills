@@ -1,7 +1,7 @@
 {
   "name": "fastapicloud",
   "version": "0.0.0",
-  "description": "Create, deploy, connect services, inspect logs, debug, and configure FastAPI apps on FastAPI Cloud.",
+  "description": "Create, deploy, configure custom domains, connect services, inspect logs, and debug FastAPI apps on FastAPI Cloud.",
   "author": {
     "name": "FastAPI Labs",
     "url": "https://fastapicloud.com/"
@@ -13,6 +13,7 @@
     "fastapicloud",
     "fastapi-cloud",
     "deployment",
+    "custom-domains",
     "integrations",
     "python"
   ],
@@ -20,7 +21,7 @@
   "interface": {
     "displayName": "FastAPI Cloud",
     "shortDescription": "Deploy and manage FastAPI apps",
-    "longDescription": "Provides skills for creating and deploying FastAPI apps, connecting third-party resources, debugging failed deploys, inspecting app logs, and managing environment variables.",
+    "longDescription": "Provides skills for creating and deploying FastAPI apps, configuring custom domains, connecting third-party resources, debugging failed deploys, inspecting app logs, and managing environment variables.",
     "developerName": "FastAPI Labs",
     "category": "Developer Tools",
     "capabilities": [
@@ -33,6 +34,7 @@
     "termsOfServiceURL": "https://fastapicloud.com/legal/terms/",
     "defaultPrompt": [
       "Create and deploy a FastAPI app to FastAPI Cloud.",
+      "Add and configure a custom domain for this FastAPI Cloud app.",
       "Connect a managed service to this FastAPI Cloud app.",
       "Inspect logs and diagnose this FastAPI Cloud deployment."
     ],

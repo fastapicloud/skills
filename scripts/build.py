@@ -10,6 +10,7 @@ TEMPLATES = ROOT / "src" / "plugins"
 SKILL_NAMES = (
     "fastapi-new",
     "fastapicloud-deploy",
+    "fastapicloud-domains",
     "fastapicloud-env",
     "fastapicloud-integrations",
     "fastapicloud-logs",

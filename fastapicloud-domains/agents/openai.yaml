@@ -1,0 +1,4 @@
+interface:
+  display_name: "FastAPI Cloud Domains"
+  short_description: "Manage custom domains and DNS setup"
+  default_prompt: "Use $fastapicloud-domains to add and configure a custom domain for this FastAPI Cloud app."
