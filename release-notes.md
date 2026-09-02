@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add skill for custom domains. PR [#9](https://github.com/fastapicloud/skills/pull/9) by [@patrick91](https://github.com/patrick91).
+
 ## 0.2.2 (2026-09-02)
 
 ### Features
