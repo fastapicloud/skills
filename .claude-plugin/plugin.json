@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "fastapicloud",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "displayName": "FastAPI Cloud",
   "description": "Create, deploy, configure custom domains, connect services, inspect logs, and debug FastAPI apps on FastAPI Cloud.",
   "author": {
