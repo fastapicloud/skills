@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Features
+
+* 🐛 Limit Codex default prompts to three. PR [#12](https://github.com/fastapicloud/skills/pull/12) by [@patrick91](https://github.com/patrick91).
+
 ## 0.3.0 (2026-09-03)
 
 ### Features
