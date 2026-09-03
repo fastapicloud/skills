@@ -35,6 +35,7 @@ OPENAI_INTERFACE_FIELDS = {
     "brand_color",
     "default_prompt",
 }
+CODEX_DEFAULT_PROMPT_LIMIT = 3
 
 
 class ValidationError(RuntimeError):
@@ -219,6 +220,19 @@ def validate_distribution(target: str, distribution: Path, version: str) -> None
         manifest.get("version") == version,
         f"Version mismatch in {manifest_path}: {manifest.get('version')!r} != {version!r}",
     )
+    interface = manifest.get("interface")
+    require(isinstance(interface, dict), f"Expected an interface object in {manifest_path}")
+    default_prompts = interface.get("defaultPrompt")
+    if default_prompts is not None:
+        require(
+            isinstance(default_prompts, list),
+            f"Expected interface.defaultPrompt to be a list in {manifest_path}",
+        )
+        require(
+            len(default_prompts) <= CODEX_DEFAULT_PROMPT_LIMIT,
+            f"interface.defaultPrompt must contain at most "
+            f"{CODEX_DEFAULT_PROMPT_LIMIT} prompts in {manifest_path}",
+        )
     require((distribution / "assets" / "logo.png").is_file(), "Missing Codex logo")
     validate_skills(distribution / "skills", codex_metadata=True)
 

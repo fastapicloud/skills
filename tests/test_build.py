@@ -76,6 +76,21 @@ def test_distribution_rejects_invalid_openai_metadata(tmp_path: Path) -> None:
         validate_distribution("codex", output, current_version())
 
 
+def test_distribution_rejects_too_many_default_prompts(tmp_path: Path) -> None:
+    output = tmp_path / "codex"
+    build("codex", output)
+    manifest_path = output / ".codex-plugin" / "plugin.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest["interface"]["defaultPrompt"].append("Configure another capability.")
+    manifest_path.write_text(json.dumps(manifest))
+
+    with pytest.raises(
+        ValidationError,
+        match="interface.defaultPrompt must contain at most 3 prompts",
+    ):
+        validate_distribution("codex", output, current_version())
+
+
 def test_release_rejects_invalid_openai_metadata(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
