@@ -33,8 +33,7 @@
     "privacyPolicyURL": "https://fastapicloud.com/legal/privacy-policy/",
     "termsOfServiceURL": "https://fastapicloud.com/legal/terms/",
     "defaultPrompt": [
-      "Create and deploy a FastAPI app to FastAPI Cloud.",
-      "Add and configure a custom domain for this FastAPI Cloud app.",
+      "Create and deploy a FastAPI app with a custom domain on FastAPI Cloud.",
       "Connect a managed service to this FastAPI Cloud app.",
       "Inspect logs and diagnose this FastAPI Cloud deployment."
     ],
