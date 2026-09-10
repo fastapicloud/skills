@@ -11,7 +11,7 @@ Inspect and manage FastAPI Cloud environment variables while protecting secret v
 
 ## CLI Baseline
 
-Assume the released project CLI is correct and start with the `fastapi cloud env ...` command needed for the task, such as:
+The mutation workflow below requires FastAPI Cloud CLI `0.26.0` or newer. Start with the `fastapi cloud env ...` command needed for the task, such as:
 
 ```bash
 uv run fastapi cloud env --help
@@ -31,7 +31,7 @@ uv add -U "fastapi[standard]"
 uv lock --upgrade-package fastapi --upgrade-package fastapi-cloud-cli
 ```
 
-If the project cloud CLI reports a version older than `0.20.0`, update the project environment before retrying.
+If the project cloud CLI reports a version older than `0.26.0`, update the project environment before using the mutation workflow below.
 
 ## JSON Output
 
@@ -62,11 +62,15 @@ The CLI does not show secret values in `env list` or `env get` output. Do not tr
 
 Only set or delete env vars when the user explicitly asks. Do not echo secrets in chat or shell history.
 
+`env set` creates a variable or updates its value if it already exists. Both `env set` and `env delete` request an app redeploy by default. Use `--no-redeploy` when saving changes without deploying, or on intermediate changes when setting several variables before one final redeploy.
+
 For secret values, prefer stdin:
 
 ```bash
 uv run fastapi cloud env set NAME --value-stdin --secret --path . --json
 ```
+
+`--secret` marks a new variable as secret. Existing variables keep their secret status, even when this flag is supplied or omitted. Read the existing variable first and use the returned `is_secret` field to verify its status; do not assume `--secret` converts an existing non-secret variable into a secret.
 
 For non-secret values:
 
@@ -80,8 +84,19 @@ For deletion:
 uv run fastapi cloud env delete NAME --path . --yes --json
 ```
 
+Deletion succeeds even if the named variable is already absent.
+
+To save or delete without redeploying:
+
+```bash
+uv run fastapi cloud env set NAME VALUE --no-redeploy --path . --json
+uv run fastapi cloud env delete NAME --no-redeploy --path . --yes --json
+```
+
+Integration-managed variables cannot be changed through these commands. Follow the integrations workflow if the backend reports that a variable is managed by a connected resource.
+
 ## Notes
 
-- Env var changes may require a redeploy or restart path before the running app observes them.
+- Changes saved with `--no-redeploy` need a later deployment before the running app observes them. A successful env command does not establish that a redeployment has completed successfully.
 - When debugging missing config, inspect app logs after env changes.
 - Treat `.env` files as local-only; do not commit secrets.

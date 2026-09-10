@@ -79,6 +79,24 @@ uv run fastapi cloud deploy . --json
 
 Use `--app-id APP_ID` or `FASTAPI_CLOUD_APP_ID` for a specific target. `--json` deploy output implies non-waiting behavior; for non-JSON deploy commands, use `--no-wait` only when the user wants the command to return before the deployment reaches a terminal state.
 
+## Check Deployment Status
+
+After a non-waiting deploy, use the returned deployment ID to check progress:
+
+```bash
+uv run fastapi cloud deployments get DEPLOYMENT_ID --app-id APP_ID --json
+```
+
+Inspect `data.deployment.status`. Successful submission is not deployment success. Unless the user requested submission only, continue checking until the deployment reaches a terminal state; report an in-progress status if you cannot establish completion.
+
+With CLI `0.26.0` or newer, `data.deployment.failure` contains backend build-failure guidance when available: `error_code`, `error_title`, `error_message`, and `error_hint`. Surface the title, message, and any non-empty hint before investigating further. If guidance is absent or more detail is needed, use the `fastapicloud-logs` workflow:
+
+```bash
+uv run fastapi cloud deployments build-logs DEPLOYMENT_ID --no-follow --json
+```
+
+Parse stdout even if this command exits with code 1: a failed build can still return a valid JSON result containing logs and failure guidance. Deployment inspection requires a logged-in user session; a CI deploy token alone cannot authenticate these read commands.
+
 ## App Creation, Linking, And Updates
 
 Use read commands before write commands:
