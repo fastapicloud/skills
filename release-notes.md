@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update skills for FastAPI Cloud CLI 0.26.0. PR [#14](https://github.com/fastapicloud/skills/pull/14) by [@patrick91](https://github.com/patrick91).
+
 ## 0.3.1 (2026-09-03)
 
 ### Features
