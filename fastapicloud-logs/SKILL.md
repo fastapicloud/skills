@@ -59,6 +59,20 @@ uv run fastapi cloud deployments build-logs DEPLOYMENT_ID --no-follow --json
 
 If no deployment ID is provided, use the newest deployment from `deployments list`.
 
+### Build Failure Guidance
+
+FastAPI Cloud CLI `0.26.0` or newer includes backend failure guidance when available. In `build-logs --no-follow --json`, inspect `data.failed` and `data.failure` as well as `data.logs`. A non-null `failure` contains `error_code`, `error_title`, `error_message`, and `error_hint`. Surface the backend's title, message, and any non-empty hint; use the error code when it helps identify the failure.
+
+Build-log commands exit with code 1 for a failed build even when stdout contains a valid JSON result. Parse that result before treating the exit as a command or network error. Empty logs do not establish that a build succeeded: failure guidance can remain available after logs expire. If `failure` is null, use the reported failure state and available logs without inventing a diagnosis.
+
+For deployment status or persisted failure details:
+
+```bash
+uv run fastapi cloud deployments get DEPLOYMENT_ID --app-id APP_ID --json
+```
+
+Inspect `data.deployment.status` and `data.deployment.failure`. Build completion alone does not establish that the deployment is healthy.
+
 ## Authentication
 
 Treat auth as a blocker, not the main workflow:
